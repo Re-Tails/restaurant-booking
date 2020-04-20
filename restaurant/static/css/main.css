@@ -11,7 +11,8 @@
 
 .food-carousel{
   max-width: 300px;
-  margin: auto;
+  /* margin: auto; */
+  float:right;
 }
 
 .carousel-item{
