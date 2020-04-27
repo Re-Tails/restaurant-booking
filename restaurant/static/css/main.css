@@ -45,3 +45,12 @@
 .view-menu{
   margin-bottom: 100px;
 }
+
+.list-dish{
+  margin-bottom: 20px;
+}
+
+.select-dish-radio-btn{
+  position: absolute;
+  bottom: 0;
+}
