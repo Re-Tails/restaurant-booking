@@ -32,7 +32,7 @@ class Item(models.Model):
     IT_Profit = models.DecimalField(max_digits=10, decimal_places=2)
     IT_Calories = models.IntegerField()
     IT_GluttenFree = models.BooleanField()
-    IT_Calories = models.BooleanField()
+    IT_Vegetarian = models.BooleanField()
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items')
 
 class BranchItem(models.Model):
