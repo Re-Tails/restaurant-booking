@@ -36,3 +36,12 @@
   text-align: center;
   margin: auto;
 }
+
+.menu-img{
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.view-menu{
+  margin-bottom: 100px;
+}
