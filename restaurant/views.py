@@ -8,3 +8,6 @@ def index(request):
 
 def view_menu(request):
     return render(request, 'view_menu.html')
+
+def select_dish(request):
+    return render(request, 'select_dish.html')
