@@ -1,56 +1,90 @@
 {% extends "base.html" %}
 {% block content %}
+
 <body class="view-menu">
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1>What We Offer</h1>
-    <div class="w-25">
-      Here we offer a large range of authentic Italian cuisine to suit your tasting
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1>What We Offer</h1>
+      <div class="w-25">
+        Here we offer a large range of authentic Italian cuisine to suit your tasting
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Inside this div will contain a loop that will go through the menu and
+  <!-- Inside this div will contain a loop that will go through the menu and
 list them out in columns of 2. Once I get the database working ill add it in.
 For now the images are temporary just to show what the final outcome should look like.-->
-<div class="container">
-  <h2 class="text-center"><u>Entrée</u></h2>
-  <div class="row">
-    <div class="col-6">
-      <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-    </div>
-    <div class="col-6">
-      <h5 class="text-left">Entree 1</h5>
-      <p class="text-left w-50">Here is where the information of the food will be stored</p>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-  <h2 class="text-center"><u>Main</u></h2>
-  <div class="row">
-    <div class="col-6">
-      <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-    </div>
-    <div class="col-6">
-      <h5 class="text-left">Main 1</h5>
-      <p class="text-left w-50">Here is where the information of the food will be stored</p>
-    </div>
-  </div>
-</div>
+  <!-- This is the loop to use to call from database and display info
+Note this is caps sensitive -->
+  <!-- {% for item in items %}
 
-<div class="container">
-  <h2 class="text-center"><u>Dessert</u></h2>
-  <div class="row">
-    <div class="col-6">
-      <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+<p>test {{item.IT_Name}}</p>
+
+{% endfor %} -->
+
+  <div>
+    <div class="container">
+      <h2 class="text-center"><u>Menu</u></h2>
+      
+      <!-- Below is a loop that will list all of the menu info -->
+      {% for item in items %}
+      <div class="row">
+        <div class="col-6">
+          <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+        </div>
+        <div class="col-6">
+          <h5 class="text-left">{{item.IT_Name}}</h5>
+          <p class="text-left w-50">Here is where the information of the food will be stored</p>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-    <div class="col-6">
-      <h5 class="text-left">Dessert 1</h5>
-      <p class="text-left w-50">Here is where the information of the food will be stored</p>
+
+    <!-- Below is all comented out because I need to ask Long or David to add in
+a category column for restaurant_item -->
+
+
+
+    <!-- <div class="container">
+    <h2 class="text-center"><u>Entrée</u></h2>
+    <div class="row">
+      <div class="col-6">
+        <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+      </div>
+      <div class="col-6">
+        <h5 class="text-left">Entree 1</h5>
+        <p class="text-left w-50">Here is where the information of the food will be stored</p>
+      </div>
     </div>
   </div>
-</div>
-</body>
-{% include "footer.html" %}
-{% endblock %}
+
+
+  <div class="container">
+    <h2 class="text-center"><u>Main</u></h2>
+    <div class="row">
+      <div class="col-6">
+        <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+      </div>
+      <div class="col-6">
+        <h5 class="text-left">Main 1</h5>
+        <p class="text-left w-50">Here is where the information of the food will be stored</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="text-center"><u>Dessert</u></h2>
+    <div class="row">
+      <div class="col-6">
+        <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+      </div>
+      <div class="col-6">
+        <h5 class="text-left">Dessert 1</h5>
+        <p class="text-left w-50">Here is where the information of the food will be stored</p>
+      </div>
+    </div>
+  </div>
+</body> -->
+    {% include "footer.html" %}
+    {% endblock %}
