@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'restaurant.apps.RestaurantConfig'
+    'restaurant.apps.RestaurantConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'direct/static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
