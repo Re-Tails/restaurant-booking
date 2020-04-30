@@ -11,43 +11,42 @@
     </div>
   </div>
 
-<div class="container">
-  <h2 class="text-center">Select Dishes</h2>
-  <div class="row">
-{% for item in items %}
-<div class="col-6">
-  <div class="row">
-  <div class="col-6">
-    <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+  <div class="container">
+    <h2 class="text-center">Select Dishes</h2>
+    <div class="row">
+      {% for item in items %}
+      <div class="col-6">
+        <div class="row">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <!-- <p class="text-left w-50">Here is where the information of the food will be stored</p> -->
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
-  <div class="col-6">
-    <h5 class="text-left">{{item.IT_Name}}</h5>
-    <!-- <p class="text-left w-50">Here is where the information of the food will be stored</p> -->
-    <p class="text-left w-50">
-      <b>Price: </b>${{item.IT_Price}}<br>
-      <b>Calories: </b>{{item.IT_Calories}}
-      <br>
-      <b>Vegetarian: </b>
-      {% if item.IT_Vegetarian %}
-      Yes
-      {% else %}
-      No
-      {% endif %}
-      <br>
-      <b>Glutten Free: </b>
-      {% if item.IT_GluttenFree %}
-      Yes
-      {% else %}
-      No
-      {% endif %}
-    </p>
-  </div>
-</div>
-</div>
-
-{% endfor %}
-</div>
-</div>
 
   <!-- Similar to the view menu branch. I will add in a loop that will list
 the items dynamically -->
