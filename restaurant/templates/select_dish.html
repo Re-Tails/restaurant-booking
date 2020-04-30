@@ -12,17 +12,16 @@
   </div>
 
   <div class="container">
-    <h2 class="text-center">Select Dishes</h2>
+    <h2 class="text-center">Entrée</h2>
     <div class="row">
-      {% for item in items %}
-      <div class="col-6">
+      {% for item in entrees %}
+      <div class="col-lg-6 col-sm-12 list-dish">
         <div class="row">
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
           </div>
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             <h5 class="text-left">{{item.IT_Name}}</h5>
-            <!-- <p class="text-left w-50">Here is where the information of the food will be stored</p> -->
             <p class="text-left w-50">
               <b>Price: </b>${{item.IT_Price}}<br>
               <b>Calories: </b>{{item.IT_Calories}}
@@ -41,12 +40,92 @@
               No
               {% endif %}
             </p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="entree" name="entree" value={{item.IT_PK}}></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="text-center">Main</h2>
+    <div class="row">
+      {% for item in mains %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="main" name="main" value={{item.IT_PK}}></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="text-center">Dessert</h2>
+    <div class="row">
+      {% for item in desserts %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="dessert" name="dessert" value={{item.IT_PK}}></h5>
+            </div>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
+
+
+
 
   <!-- Similar to the view menu branch. I will add in a loop that will list
 the items dynamically -->

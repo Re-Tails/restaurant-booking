@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<body class="view-menu">
+<body class="body-content">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1>What We Offer</h1>
@@ -11,10 +11,6 @@
     </div>
   </div>
 
-  <!-- Inside this div will contain a loop that will go through the menu and
-list them out in columns of 2. Once I get the database working ill add it in.
-For now the images are temporary just to show what the final outcome should look like.-->
-
   <!-- This is the loop to use to call from database and display info
 Note this is caps sensitive -->
   <!-- {% for item in items %}
@@ -23,194 +19,110 @@ Note this is caps sensitive -->
 
 {% endfor %} -->
 
-<div class="container">
-  <h2 class="text-center">Entrée</h2>
-  <div class="row">
-    {% for item in entrees %}
-    <div class="col-6">
-      <div class="row">
-        <div class="col-6">
-          <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-        </div>
-        <div class="col-6">
-          <h5 class="text-left">{{item.IT_Name}}</h5>
-          <!-- <p class="text-left w-50">Here is where the information of the food will be stored</p> -->
-          <p class="text-left w-50">
-            <b>Price: </b>${{item.IT_Price}}<br>
-            <b>Calories: </b>{{item.IT_Calories}}
-            <br>
-            <b>Vegetarian: </b>
-            {% if item.IT_Vegetarian %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-            <br>
-            <b>Glutten Free: </b>
-            {% if item.IT_GluttenFree %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-          </p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  <h2 class="text-center">Main</h2>
-  <div class="row">
-    {% for item in mains %}
-    <div class="col-6">
-      <div class="row">
-        <div class="col-6">
-          <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-        </div>
-        <div class="col-6">
-          <h5 class="text-left">{{item.IT_Name}}</h5>
-          <!-- <p class="text-left w-50">Here is where the information of the food will be stored</p> -->
-          <p class="text-left w-50">
-            <b>Price: </b>${{item.IT_Price}}<br>
-            <b>Calories: </b>{{item.IT_Calories}}
-            <br>
-            <b>Vegetarian: </b>
-            {% if item.IT_Vegetarian %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-            <br>
-            <b>Glutten Free: </b>
-            {% if item.IT_GluttenFree %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-          </p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  <h2 class="text-center">Dessert</h2>
-  <div class="row">
-    {% for item in desserts %}
-    <div class="col-6">
-      <div class="row">
-        <div class="col-6">
-          <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-        </div>
-        <div class="col-6">
-          <h5 class="text-left">{{item.IT_Name}}</h5>
-          <!-- <p class="text-left w-50">Here is where the information of the food will be stored</p> -->
-          <p class="text-left w-50">
-            <b>Price: </b>${{item.IT_Price}}<br>
-            <b>Calories: </b>{{item.IT_Calories}}
-            <br>
-            <b>Vegetarian: </b>
-            {% if item.IT_Vegetarian %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-            <br>
-            <b>Glutten Free: </b>
-            {% if item.IT_GluttenFree %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-          </p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-
-
-
-  <!-- <div>
-    <div class="container">
-      <h2 class="text-center"><u>Menu</u></h2> -->
-
-      <!-- Below is a loop that will list all of the menu info -->
-      <!-- {% for item in items %}
-      <div class="row item-loop">
-        <div class="col-6">
-          <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-        </div>
-        <div class="col-6">
-          <h5 class="text-left">{{item.IT_Name}}</h5>
-          <p class="text-left w-50">
-            <b>Price: </b>${{item.IT_Price}}<br>
-            <b>Calories: </b>{{item.IT_Calories}}
-            <br>
-            <b>Vegetarian: </b>
-            {% if item.IT_Vegetarian %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-            <br>
-            <b>Glutten Free: </b>
-            {% if item.IT_GluttenFree %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-          </p>
+  <div class="container">
+    <h2 class="text-center">Entrée</h2>
+    <div class="row">
+      {% for item in entrees %}
+      <div class="col-lg-6 col-sm-12 list-dish">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
         </div>
       </div>
       {% endfor %}
-    </div> -->
+    </div>
 
-    <!-- Below is all comented out because I need to ask Long or David to add in
-a category column for restaurant_item -->
-
-
-
-    <!-- <div class="container">
-    <h2 class="text-center"><u>Entrée</u></h2>
+    <h2 class="text-center">Main</h2>
     <div class="row">
-      <div class="col-6">
-        <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+      {% for item in mains %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="col-6">
-        <h5 class="text-left">Entree 1</h5>
-        <p class="text-left w-50">Here is where the information of the food will be stored</p>
+      {% endfor %}
+    </div>
+
+    <h2 class="text-center">Dessert</h2>
+    <div class="row">
+      {% for item in desserts %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
+        </div>
       </div>
+      {% endfor %}
     </div>
   </div>
+</body>
 
-
-  <div class="container">
-    <h2 class="text-center"><u>Main</u></h2>
-    <div class="row">
-      <div class="col-6">
-        <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-      </div>
-      <div class="col-6">
-        <h5 class="text-left">Main 1</h5>
-        <p class="text-left w-50">Here is where the information of the food will be stored</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <h2 class="text-center"><u>Dessert</u></h2>
-    <div class="row">
-      <div class="col-6">
-        <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
-      </div>
-      <div class="col-6">
-        <h5 class="text-left">Dessert 1</h5>
-        <p class="text-left w-50">Here is where the information of the food will be stored</p>
-      </div>
-    </div>
-  </div>
-</body> -->
-    {% include "footer.html" %}
-    {% endblock %}
+{% include "footer.html" %}
+{% endblock %}
