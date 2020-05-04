@@ -28,7 +28,7 @@ class Customer(models.Model):
 
 def create_customer_profile(sender, **kwargs):
     if kwargs['created']:
-        customer_profile = Customer.objects.create(user=kwargs['instance'])
+        customer_profile = Customer.objects.create(CU_User=kwargs['instance'])
 
 post_save.connect(create_customer_profile, sender=User)
 
@@ -41,7 +41,7 @@ class Employee(models.Model):
 
 def create_employee_profile(sender, **kwargs):
     if kwargs['created']:
-        employee_profile = Employee.objects.create(user=kwargs['instance'])
+        employee_profile = Employee.objects.create(EM_User=kwargs['instance'])
 
 post_save.connect(create_employee_profile, sender=User)
 
