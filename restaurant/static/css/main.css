@@ -26,7 +26,6 @@
   object-fit: cover;
 }
 
-
  .footer{
   background-color:#343a40;
   padding: 20px;
@@ -36,4 +35,22 @@
 .footer p{
   text-align: center;
   margin: auto;
+}
+
+.menu-img{
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.body-content{
+  margin-bottom: 100px;
+}
+
+.list-dish{
+  margin-bottom: 20px;
+}
+
+.select-dish-radio-btn{
+  position: absolute;
+  bottom: 0;
 }

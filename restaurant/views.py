@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
+from restaurant.models import Item
 
 def index(request):
     #return HttpResponse("Hello, world. You're at the index page.")
@@ -30,8 +31,8 @@ class addCategoryView(CreateView):
         context = super(addCategoryView, self).get_context_data(**kwargs)
         context['title'] = 'Add Category'
         return context
-    
-    
+
+
 class addBranchView(CreateView):
     model = Branch
     fields = ['BR_Name', 'BR_Address']
@@ -54,3 +55,25 @@ class addTableView(CreateView):
         context = super(addTableView, self).get_context_data(**kwargs)
         context['title'] = 'Add Table'
         return context
+
+def view_menu(request):
+    entree = Item.objects.all().filter(IT_CA = 1)
+    main = Item.objects.all().filter(IT_CA = 2)
+    dessert = Item.objects.all().filter(IT_CA = 3)
+    context = {
+        'entrees': entree,
+        'mains': main,
+        'desserts': dessert
+    }
+    return render(request, 'view_menu.html', context)
+
+def select_dish(request):
+    entree = Item.objects.all().filter(IT_CA = 1)
+    main = Item.objects.all().filter(IT_CA = 2)
+    dessert = Item.objects.all().filter(IT_CA = 3)
+    context = {
+        'entrees': entree,
+        'mains': main,
+        'desserts': dessert
+    }
+    return render(request, 'select_dish.html', context)
