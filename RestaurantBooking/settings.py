@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'RestaurantBooking.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': 
+    'default':
 	{
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv("DB_Name"),
@@ -134,3 +134,5 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'dashboard'
