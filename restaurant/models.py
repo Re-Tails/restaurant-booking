@@ -44,6 +44,7 @@ class Item(models.Model):
     IT_GluttenFree = models.BooleanField()
     IT_Calories = models.BooleanField()
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items')
+    IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
 
 class BranchItem(models.Model):
     BI_PK = models.AutoField(primary_key=True)
