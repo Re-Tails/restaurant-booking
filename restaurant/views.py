@@ -85,7 +85,10 @@ def select_dish(request):
     }
     return render(request, 'select_dish.html', context)
 
+
 def dashboardView(request):
+    if not request.user.is_authenticated:
+        return redirect('login_url')
     return render(request, 'dashboard.html')
 
 def registerView(request):
@@ -100,10 +103,14 @@ def registerView(request):
     return render(request, 'restaurant/templates/registration/register.html', args)
 
 def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('login_url')
     args = {'user': request.user}
     return render(request, 'registration/profile.html', args)
 
 def edit_profile(request):
+    if not request.user.is_authenticated:
+        return redirect('login_url')
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
 
@@ -116,6 +123,8 @@ def edit_profile(request):
         return render(request, 'registration/edit_profile.html', args)
 
 def change_password(request):
+    if not request.user.is_authenticated:
+        return redirect('login_url')
     if request.method == 'POST':
         form = PasswordChangeForm(data = request.POST, user=request.user)
 
