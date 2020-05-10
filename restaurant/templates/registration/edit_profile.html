@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-    <title>test</title>
+<title>test</title>
 
-    <div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type ='submit'>Submit</button>
-    </form>
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+    {% for field in form %}
+    {% if field.name != "password" %}
+    {{ field.label_tag }} {{ field }} {{ field.help_text }}
     <br>
-    </div>
+    {% endif %}
+    {% endfor %}
+    <button type='submit'>Submit</button>
+  </form>
+  <br>
+</div>
 
 {% include "footer.html" %}
 {% endblock %}
