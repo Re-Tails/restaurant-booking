@@ -1,8 +1,7 @@
-{%block head%}
-        <title>Profile</title>
-{%endblock%}
+{% extends "base.html" %}
+{% block content %}
+    <title>test</title>
 
-{% block body %}
     <div class="container">
     <form method="post">
         {% csrf_token %}
@@ -12,4 +11,5 @@
     <br>
     </div>
 
-{%endblock%}
+{% include "footer.html" %}
+{% endblock %}
