@@ -1,15 +1,32 @@
-{%block head%}
-        <title>Profile</title>
-{%endblock%}
+{% extends "base.html" %}
+{% block content %}
+<title>test</title>
 
-{% block body %}
-    <div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type ='submit'>Submit</button>
-    </form>
-    <br>
+<div class="container edit-container">
+  <form method="post">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+    <h1 class="text-center">Edit Profile</h1>
+    <hr>
+    <div class="row">
+      {% for field in form %}
+      {% if field.name != "password" %}
+      <div class="col-6 text-right">
+        {{ field.label_tag }}
+      </div>
+      <div class="col-6">
+        {{ field }}
+      </div>
+      {{ field.help_text }}
+      <br>
+      {% endif %}
+      {% endfor %}
     </div>
+    <br>
+    <button type='submit' class="btn btn-dark btn-md d-flex submit-btn">Submit</button>
+  </form>
+  <br>
+</div>
 
-{%endblock%}
+{% include "footer.html" %}
+{% endblock %}

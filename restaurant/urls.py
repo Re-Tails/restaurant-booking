@@ -1,5 +1,4 @@
 from django.urls import path
-from django.urls import path
 from django.conf.urls import url
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView
@@ -12,6 +11,9 @@ urlpatterns = [
     path('addCategory', views.addCategoryView.as_view(), name='addCategory'),
     path('addBranch', views.addBranchView.as_view(), name='addBranch'),
     path('addTable', views.addTableView.as_view(), name='addTable'),
+    path('view_menu', views.view_menu, name='view_menu'),
+    # This url is a temporary url used for the development of the selecting dishes
+    path('select_dish', views.select_dish, name='view_menu'),
     path('dashboard/', views.dashboardView, name='dashboard'),
     path('login/', LoginView.as_view(), name='login_url'),
     path('logout/', LogoutView.as_view(), name='logout_url'),
