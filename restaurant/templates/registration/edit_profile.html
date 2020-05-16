@@ -2,17 +2,18 @@
 {% block content %}
 <title>test</title>
 
-<div class="container edit-container">
+<div class="login-wrap">
   <form method="post">
     {% csrf_token %}
     <!-- {{ form.as_p }} -->
+    <br>
     <h1 class="text-center">Edit Profile</h1>
     <hr>
-    <div class="row">
+    <div class="row edit-form">
       {% for field in form %}
       {% if field.name != "password" %}
       <div class="col-6 text-right">
-        {{ field.label_tag }}
+        <b>{{ field.label_tag }}</b>
       </div>
       <div class="col-6">
         {{ field }}
