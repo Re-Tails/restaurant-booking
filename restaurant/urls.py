@@ -8,10 +8,14 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('addItem', views.addItemView.as_view(), name='addItem'),
-    path('addCategory', views.addCategoryView.as_view(), name='addCategory'),
-    path('addBranch', views.addBranchView.as_view(), name='addBranch'),
-    path('addTable', views.addTableView.as_view(), name='addTable'),
+    path('item/add', views.addItemView.as_view(), name='addItem'),
+    path('item/<int:pk>/update', views.updateItemView.as_view(), name='updateItem'),
+    path('category/add', views.addCategoryView.as_view(), name='addCategory'),
+    path('category/<int:pk>/update', views.updateCategoryView.as_view(), name='updateCategory'),
+    path('branch/add', views.addBranchView.as_view(), name='addBranch'),
+    path('branch/<int:pk>/update', views.updateBranchView.as_view(), name='updateBranch'),
+    path('table/add', views.addTableView.as_view(), name='addTable'),
+    path('table/<int:pk>/update', views.updateTableView.as_view(), name='updateTable'),
     path('dashboard/', views.dashboardView, name='dashboard'),
     path('login/', LoginView.as_view(), name='login_url'),
     path('logout/', LogoutView.as_view(), name='logout_url'),

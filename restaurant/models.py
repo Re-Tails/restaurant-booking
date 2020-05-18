@@ -35,9 +35,15 @@ class Branch(models.Model):
     BR_Name = models.CharField(max_length=45, verbose_name='Name')
     BR_Address = models.CharField(max_length=45, verbose_name='Address')
 
+    def __str__(self):
+        return self.BR_Name
+
 class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
     CA_Name = models.CharField(max_length=45, verbose_name='Name')
+
+    def __str__(self):
+        return self.CA_Name
 
 class Item(models.Model):
     IT_PK = models.AutoField(primary_key=True)
@@ -49,6 +55,9 @@ class Item(models.Model):
     IT_GluttenFree = models.BooleanField(verbose_name='Glutten Free')
     IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items', verbose_name='Image')
+    
+    def __str__(self):
+        return self.IT_Name
 
 class BranchItem(models.Model):
     BI_PK = models.AutoField(primary_key=True)
@@ -61,6 +70,9 @@ class Table(models.Model):
     TA_BR = models.ForeignKey('Branch', on_delete=models.CASCADE, verbose_name='Branch')
     TA_Code = models.CharField(max_length=10, verbose_name='Code')
     TA_Seats = models.IntegerField(verbose_name='Number of seats')
+
+    def __str__(self):
+        return self.TA_Code
 
 class Reservation(models.Model):
     RS_PK = models.AutoField(primary_key=True)
@@ -76,6 +88,7 @@ class Receipt(models.Model):
     RC_CU = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
     RC_TotalPrice = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Total price')
     RC_TotalProfit = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Total profit')
+
 
 class Order(models.Model):
     OR_PK = models.AutoField(primary_key=True)
