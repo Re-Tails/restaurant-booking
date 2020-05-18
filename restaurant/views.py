@@ -33,6 +33,7 @@ def registerView(request):
     args = {'form': form}
     return render(request, 'restaurant/templates/registration/register.html', args)
 
+
 def profile(request):
     args = {'user': request.user}
     return render(request, 'registration/profile.html', args)
