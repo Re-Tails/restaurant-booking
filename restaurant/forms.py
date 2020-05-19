@@ -1,6 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.db import transaction
+
+from restaurant.models import Employee, Customer
+
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=75, required=True)
