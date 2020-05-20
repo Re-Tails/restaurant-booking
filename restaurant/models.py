@@ -24,6 +24,10 @@ class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
     CA_Name = models.CharField(max_length=45)
 
+def __str__(self):
+    return self.CA_Name
+
+
 class Item(models.Model):
     IT_PK = models.AutoField(primary_key=True)
     IT_CA = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)

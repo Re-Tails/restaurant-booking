@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\restaurant",
+    "\\RestaurantBooking",
+    "\\restaurant\\static",
+    "\\restaurant\\static\\css",
+    "\\restaurant\\templates"
+  ],
+  "SelectedNode": "\\restaurant\\views.py",
+  "PreviewInSolutionExplorer": false
+}
