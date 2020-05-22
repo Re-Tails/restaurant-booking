@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -80,9 +80,21 @@ class updateItemView(UpdateView):
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
-        context = super(addItemView, self).get_context_data(**kwargs)
+        context = super(updateItemView, self).get_context_data(**kwargs)
         context['title'] = 'Update Item'
         return context
+
+class deleteItemView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteItemView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Item'
+        context['name'] = self.get_object().IT_Name
+        return context
+
 
 class addCategoryView(CreateView):
     model = Category
@@ -102,8 +114,19 @@ class updateCategoryView(CreateView):
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
-        context = super(addCategoryView, self).get_context_data(**kwargs)
+        context = super(updateCategoryView, self).get_context_data(**kwargs)
         context['title'] = 'Update Category'
+        return context
+
+class deleteCategoryView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteCategoryView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Category'
+        context['name'] = self.get_object().CA_Name
         return context
 
 class addBranchView(CreateView):
@@ -124,9 +147,21 @@ class updateBranchView(UpdateView):
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
-        context = super(addBranchView, self).get_context_data(**kwargs)
+        context = super(updateBranchView, self).get_context_data(**kwargs)
         context['title'] = 'Update Branch'
         return context
+
+class deleteBranchView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteBranchView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Branch'
+        context['name'] = self.get_object().BR_Name
+        return context
+
 
 class addTableView(CreateView):
     model = Table
@@ -146,7 +181,17 @@ class updateTableView(UpdateView):
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
-        context = super(addTableView, self).get_context_data(**kwargs)
+        context = super(updateTableView, self).get_context_data(**kwargs)
         context['title'] = 'Update Table'
         return context
 
+class deleteTableView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteTableView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Table'
+        context['name'] = self.get_object().TA_Code
+        return context
