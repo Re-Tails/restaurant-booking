@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 class Customer(models.Model):
     CU_PK = models.AutoField(primary_key=True)
@@ -8,12 +11,24 @@ class Customer(models.Model):
     CU_Phone = models.CharField(max_length=15, verbose_name='Phone')
     CU_Address = models.CharField(max_length=45, verbose_name='Address')
 
+def create_customer_profile(sender, **kwargs):
+    if kwargs['created']:
+        customer_profile = Customer.objects.create(CU_User=kwargs['instance'])
+
+post_save.connect(create_customer_profile, sender=User)
+
 class Employee(models.Model):
     EM_PK = models.AutoField(primary_key=True)
     EM_User = models.OneToOneField(User, on_delete=models.CASCADE)
     #username, first_name, last_name, email, password
     EM_BR = models.ForeignKey('Branch', on_delete=models.SET_NULL, null=True, verbose_name='Branch')
     EM_EM_Manager = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, verbose_name='Manager')
+
+def create_employee_profile(sender, **kwargs):
+    if kwargs['created']:
+        employee_profile = Employee.objects.create(EM_User=kwargs['instance'])
+
+post_save.connect(create_employee_profile, sender=User)
 
 class Branch(models.Model):
     BR_PK = models.AutoField(primary_key=True)

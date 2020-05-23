@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{%block content%}
+
+    <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <div class="group">
+					    <input type="submit" class="button" value="Sign In">
+				    </div>
+                </form>
+                <div class="group">
+					<input id="check" type="checkbox" class="check" checked>
+					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+				</div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                    <a href="#forgot">Forgot Password?</a>
+                </div>
+            </div>
+		</div>
+
+	</div>
+</div>
+
+
+{%endblock%}
