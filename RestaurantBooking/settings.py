@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/main.css/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'direct/static'),
+    os.path.join(BASE_DIR, 'restaurant/static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
