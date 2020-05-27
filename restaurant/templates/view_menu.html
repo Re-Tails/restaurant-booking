@@ -19,7 +19,12 @@ Note this is caps sensitive -->
 
 {% endfor %} -->
 
+<button onclick="displayEntree()">show entree</button>
+<button onclick="displayMain()">show main</button>
+<button onclick="displayDessert()"></button>
+
   <div class="container">
+    <div id="entreeDIV">
     <h2 class="text-center">Entrée</h2>
     <div class="row">
       {% for item in entrees %}
@@ -53,7 +58,9 @@ Note this is caps sensitive -->
       </div>
       {% endfor %}
     </div>
+    </div>
 
+<<div id="mainDIV">
     <h2 class="text-center">Main</h2>
     <div class="row">
       {% for item in mains %}
@@ -88,7 +95,9 @@ Note this is caps sensitive -->
       </div>
       {% endfor %}
     </div>
+    </div>
 
+<div id="dessertDIV">
     <h2 class="text-center">Dessert</h2>
     <div class="row">
       {% for item in desserts %}
@@ -123,6 +132,7 @@ Note this is caps sensitive -->
       </div>
       {% endfor %}
     </div>
+  </div>
   </div>
 </body>
 
