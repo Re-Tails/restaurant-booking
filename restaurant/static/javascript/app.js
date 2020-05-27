@@ -16,17 +16,41 @@ function displayEntree(){
 }
 
 function displayMain(){
-
+  showMain();
+  hideEntree();
+  hideDessert();
 }
 
 function displayDessert(){
-  
+  showDessert();
+  hideEntree();
+  hideMain();
+}
+
+function displayAll(){
+  showEntree();
+  showMain();
+  showDessert();
 }
 
 function showEntree(){
   var entree = document.getElementById("entreeDIV");
   if(entree.style.display === "none"){
     entree.style.display = "block";
+  }
+}
+
+function showMain(){
+  var main = document.getElementById("mainDIV");
+  if(main.style.display === "none"){
+    main.style.display = "block";
+  }
+}
+
+function showDessert(){
+  var dessert = document.getElementById("dessertDIV");
+  if(dessert.style.display === "none"){
+    dessert.style.display = "block";
   }
 }
 

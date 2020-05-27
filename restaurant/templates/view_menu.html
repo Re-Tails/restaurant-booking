@@ -21,7 +21,8 @@ Note this is caps sensitive -->
 
 <button onclick="displayEntree()">show entree</button>
 <button onclick="displayMain()">show main</button>
-<button onclick="displayDessert()"></button>
+<button onclick="displayDessert()">show dessert</button>
+<button onclick="displayAll()">All</button>
 
   <div class="container">
     <div id="entreeDIV">
@@ -60,7 +61,7 @@ Note this is caps sensitive -->
     </div>
     </div>
 
-<<div id="mainDIV">
+<div id="mainDIV">
     <h2 class="text-center">Main</h2>
     <div class="row">
       {% for item in mains %}
