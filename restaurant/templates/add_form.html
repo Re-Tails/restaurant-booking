@@ -8,6 +8,11 @@
       <legend class="border-bottom mb-4">{{ title }}</legend>
       {{ form|crispy }}
     </fieldset>
+    {% if deleteButton %}
+    <div class=form-group>
+      <button class="btn btn-danger ml-auto" href="/{{ type }}/{{ id }}/delete">Delete</button>
+    </div>
+    {% endif %}
     <div class=form-group>
       <button class="btn btn-dark ml-auto" type="submit">Submit</button>
     </div>

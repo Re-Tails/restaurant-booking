@@ -82,6 +82,9 @@ class updateItemView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(updateItemView, self).get_context_data(**kwargs)
         context['title'] = 'Update Item'
+        context['type'] = 'item'
+        context['id'] = self.get_object().IT_PK
+        context['deleteButton'] = True
         return context
 
 class deleteItemView(DeleteView):

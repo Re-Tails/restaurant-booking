@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.urls import reverse
 
 class Customer(models.Model):
     CU_PK = models.AutoField(primary_key=True)
@@ -37,6 +38,7 @@ class Branch(models.Model):
 
     def __str__(self):
         return self.BR_Name
+    
 
 class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
