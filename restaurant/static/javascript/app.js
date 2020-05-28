@@ -1,14 +1,3 @@
-alert("test");
-
-// function showEntree(){
-//   var x = document.getElementById("entreeDiv");
-//   if (x.style.display === "none"){
-//     x.style.display = "block";
-//   } else {
-//     x.style.display = "none";
-//   }
-// }
-
 function displayEntree(){
   showEntree();
   hideMain();
