@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -74,6 +74,32 @@ class addItemView(CreateView):
         context['title'] = 'Add Item'
         return context
 
+class updateItemView(UpdateView):
+    model = Item
+    fields = ['IT_Name', 'IT_Price', 'IT_CA', 'IT_Calories', 'IT_GluttenFree', 'IT_Vegetarian', 'IT_Profit', 'IT_Image']
+    template_name = 'restaurant/templates/add_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(updateItemView, self).get_context_data(**kwargs)
+        context['title'] = 'Update Item'
+        context['type'] = 'item'
+        context['id'] = self.get_object().IT_PK
+        context['deleteButton'] = True
+        return context
+
+class deleteItemView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteItemView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Item'
+        context['name'] = self.get_object().IT_Name
+        return context
+
+
 class addCategoryView(CreateView):
     model = Category
     fields = ['CA_Name']
@@ -84,7 +110,28 @@ class addCategoryView(CreateView):
         context = super(addCategoryView, self).get_context_data(**kwargs)
         context['title'] = 'Add Category'
         return context
+    
+class updateCategoryView(CreateView):
+    model = Category
+    fields = ['CA_Name']
+    template_name = 'restaurant/templates/add_form.html'
+    success_url = reverse_lazy('index')
 
+    def get_context_data(self, **kwargs):
+        context = super(updateCategoryView, self).get_context_data(**kwargs)
+        context['title'] = 'Update Category'
+        return context
+
+class deleteCategoryView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteCategoryView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Category'
+        context['name'] = self.get_object().CA_Name
+        return context
 
 class addBranchView(CreateView):
     model = Branch
@@ -95,6 +142,28 @@ class addBranchView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(addBranchView, self).get_context_data(**kwargs)
         context['title'] = 'Add Branch'
+        return context
+
+class updateBranchView(UpdateView):
+    model = Branch
+    fields = ['BR_Name', 'BR_Address']
+    template_name = 'restaurant/templates/add_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(updateBranchView, self).get_context_data(**kwargs)
+        context['title'] = 'Update Branch'
+        return context
+
+class deleteBranchView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteBranchView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Branch'
+        context['name'] = self.get_object().BR_Name
         return context
 
 
@@ -131,53 +200,24 @@ def select_dish(request):
     }
     return render(request, 'select_dish.html', context)
 
+class updateTableView(UpdateView):
+    model = Table
+    fields = ['TA_BR', 'TA_Code', 'TA_Seats']
+    template_name = 'restaurant/templates/add_form.html'
+    success_url = reverse_lazy('index')
 
-def dashboardView(request):
-    if not request.user.is_authenticated:
-        return redirect('login_url')
-    return render(request, 'dashboard.html')
+    def get_context_data(self, **kwargs):
+        context = super(updateTableView, self).get_context_data(**kwargs)
+        context['title'] = 'Update Table'
+        return context
 
-def registerView(request):
-    if request.method == 'POST':
-       form = RegistrationForm(request.POST)
-       if form.is_valid():
-            form.save()
-            return redirect('login_url')
-    else:
-        form = RegistrationForm()
-    args = {'form': form}
-    return render(request, 'restaurant/templates/registration/register.html', args)
+class deleteTableView(DeleteView):
+    model = Item
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('index')
 
-def profile(request):
-    if not request.user.is_authenticated:
-        return redirect('login_url')
-    args = {'user': request.user}
-    return render(request, 'registration/profile.html', args)
-
-def edit_profile(request):
-    if not request.user.is_authenticated:
-        return redirect('login_url')
-    if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = EditProfileForm(instance=request.user)
-        args = {'form': form}
-        return render(request, 'registration/edit_profile.html', args)
-
-def change_password(request):
-    if not request.user.is_authenticated:
-        return redirect('login_url')
-    if request.method == 'POST':
-        form = PasswordChangeForm(data = request.POST, user=request.user)
-
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = PasswordChangeForm(user=request.user)
-        args = {'form': form}
-        return render(request, 'registration/change_password.html', args)
+    def get_context_data(self, **kwargs):
+        context = super(deleteTableView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Table'
+        context['name'] = self.get_object().TA_Code
+        return context

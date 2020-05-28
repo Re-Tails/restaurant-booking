@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.urls import reverse
 
 class Customer(models.Model):
     CU_PK = models.AutoField(primary_key=True)
@@ -43,9 +44,16 @@ class Branch(models.Model):
     BR_Name = models.CharField(max_length=45)
     BR_Address = models.CharField(max_length=45)
 
+    def __str__(self):
+        return self.BR_Name
+    
+
 class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
     CA_Name = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.CA_Name
 
 class Item(models.Model):
     IT_PK = models.AutoField(primary_key=True)
@@ -56,8 +64,11 @@ class Item(models.Model):
     IT_Calories = models.IntegerField()
     IT_GluttenFree = models.BooleanField()
     IT_Calories = models.BooleanField()
-    IT_Image = models.ImageField(default='default.png', upload_to='menu_items')
     IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
+    IT_Image = models.ImageField(default='default.png', upload_to='menu_items', verbose_name='Image')
+    
+    def __str__(self):
+        return self.IT_Name
 
 class BranchItem(models.Model):
     BI_PK = models.AutoField(primary_key=True)
@@ -70,6 +81,9 @@ class Table(models.Model):
     TA_BR = models.ForeignKey('Branch', on_delete=models.CASCADE)
     TA_Code = models.CharField(max_length=10)
     TA_Seats = models.IntegerField()
+
+    def __str__(self):
+        return self.TA_Code
 
 class Reservation(models.Model):
     RS_PK = models.AutoField(primary_key=True)
@@ -85,6 +99,7 @@ class Receipt(models.Model):
     RC_CU = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
     RC_TotalPrice = models.DecimalField(max_digits=10, decimal_places=2)
     RC_TotalProfit = models.DecimalField(max_digits=10, decimal_places=2)
+
 
 class Order(models.Model):
     OR_PK = models.AutoField(primary_key=True)
