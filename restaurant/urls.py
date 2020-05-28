@@ -4,6 +4,9 @@ from . import views
 from django.contrib.auth.views import LoginView, LogoutView
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -29,4 +32,4 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('change_password/', views.change_password, name='change_password'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

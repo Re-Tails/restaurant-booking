@@ -8,6 +8,10 @@
       <div class="w-25">
         Here we offer a large range of authentic Italian cuisine to suit your tasting
       </div>
+      <button class="btn btn-dark btn-md" onclick="displayAll()">All</button>
+      <button class="btn btn-dark btn-md" onclick="displayEntree()">Entrées</button>
+      <button class="btn btn-dark btn-md" onclick="displayMain()">Mains</button>
+      <button class="btn btn-dark btn-md" onclick="displayDessert()">Dessert</button>
     </div>
   </div>
 
@@ -19,14 +23,17 @@ Note this is caps sensitive -->
 
 {% endfor %} -->
 
+
+
   <div class="container">
+    <div id="entreeDIV">
     <h2 class="text-center">Entrée</h2>
     <div class="row">
       {% for item in entrees %}
       <div class="col-lg-6 col-sm-12 list-dish">
         <div class="row">
           <div class="col-lg-6 col-sm-12">
-            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
           </div>
           <div class="col-lg-6 col-sm-12">
             <h5 class="text-left">{{item.IT_Name}}</h5>
@@ -53,14 +60,17 @@ Note this is caps sensitive -->
       </div>
       {% endfor %}
     </div>
+    </div>
 
+<div id="mainDIV">
     <h2 class="text-center">Main</h2>
     <div class="row">
       {% for item in mains %}
       <div class="col-6 list-dish">
         <div class="row">
           <div class="col-6">
-            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+            <!-- <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt=""> -->
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
           </div>
           <div class="col-6">
             <h5 class="text-left">{{item.IT_Name}}</h5>
@@ -87,14 +97,17 @@ Note this is caps sensitive -->
       </div>
       {% endfor %}
     </div>
+    </div>
 
+<div id="dessertDIV">
     <h2 class="text-center">Dessert</h2>
     <div class="row">
       {% for item in desserts %}
       <div class="col-6 list-dish">
         <div class="row">
           <div class="col-6">
-            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+            <!-- <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt=""> -->
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
           </div>
           <div class="col-6">
             <h5 class="text-left">{{item.IT_Name}}</h5>
@@ -121,6 +134,7 @@ Note this is caps sensitive -->
       </div>
       {% endfor %}
     </div>
+  </div>
   </div>
 </body>
 

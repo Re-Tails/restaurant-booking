@@ -1,6 +1,7 @@
 .jumbotron{
   background-image: url("https://tul.imgix.net/content/article/Italian_Restaurants_Gold_Coast_20.jpg");
   background-position: center;
+  background-size: cover;
   height: 400px;
   color: #ececec;
 }
@@ -194,6 +195,8 @@ a{color:inherit;text-decoration:none}
 }
 
 .menu-img{
+  object-fit: cover;
+  height: 100%;
   max-width: 200px;
   max-height: 200px;
 }
