@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -62,12 +62,18 @@ def change_password(request):
         args = {'form': form}
         return render(request, 'registration/change_password.html', args)
 
+class detailItemView(DetailView):
+    model = Item
+    template_name = 'restaurant/templates/item_details.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(detailItemView, self).get_context_data(**kwargs)
+        context['item'] = self.get_object()
+        return context
 class addItemView(CreateView):
     model = Item
     fields = ['IT_Name', 'IT_Price', 'IT_CA', 'IT_Calories', 'IT_GluttenFree', 'IT_Vegetarian', 'IT_Profit', 'IT_Image']
     template_name = 'restaurant/templates/add_form.html'
-    success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
         context = super(addItemView, self).get_context_data(**kwargs)
