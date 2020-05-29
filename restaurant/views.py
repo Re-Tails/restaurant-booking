@@ -4,7 +4,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from restaurant.forms import RegistrationForm, EditProfileForm
+from restaurant.forms import RegistrationForm, EditProfileForm, AddOrderForm
 
 from restaurant.models import Item
 from django.shortcuts import render, redirect
@@ -37,6 +37,24 @@ def registerView(request):
 def profile(request):
     args = {'user': request.user}
     return render(request, 'registration/profile.html', args)
+
+
+def addOrder(request):
+    if request.method == "POST":
+        form = AddOrderForm(request.POST)
+        if form.is_valid():
+            temp = form.save(commit=False)
+            temp.OR_CU_id = request.user.pk
+            temp = temp.save()
+            return redirect('index')
+    else:
+        form = AddOrderForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'addOrder.html', context)
+
+
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -110,7 +128,7 @@ class addCategoryView(CreateView):
         context = super(addCategoryView, self).get_context_data(**kwargs)
         context['title'] = 'Add Category'
         return context
-    
+
 class updateCategoryView(CreateView):
     model = Category
     fields = ['CA_Name']

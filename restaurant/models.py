@@ -46,7 +46,7 @@ class Branch(models.Model):
 
     def __str__(self):
         return self.BR_Name
-    
+
 
 class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
@@ -66,7 +66,7 @@ class Item(models.Model):
     IT_Calories = models.BooleanField()
     IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items', verbose_name='Image')
-    
+
     def __str__(self):
         return self.IT_Name
 
@@ -104,6 +104,7 @@ class Receipt(models.Model):
 class Order(models.Model):
     OR_PK = models.AutoField(primary_key=True)
     OR_BR = models.ForeignKey('Branch', on_delete=models.CASCADE)
+    OR_CU = models.ForeignKey('Customer', on_delete=models.CASCADE)
 
 class OrderItem(models.Model):
     OI_PK = models.AutoField(primary_key=True)

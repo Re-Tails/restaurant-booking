@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import Order
+from django.forms import ModelForm
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=75, required=True)
@@ -34,4 +36,11 @@ class EditProfileForm(UserChangeForm):
             'last_name',
             'email',
             'password'
+        )
+
+class AddOrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = (
+            'OR_BR',
         )
