@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.db import transaction
 
-from restaurant.models import Employee, Customer
+from restaurant.models import Employee, Customer, Reservation
 
 
 class RegistrationForm(UserCreationForm):
@@ -41,3 +41,12 @@ class EditProfileForm(UserChangeForm):
             'last_name',
             'email',
         )
+
+class AddReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['RS_TA', 'RS_People', 'RS_Start', 'RS_End']
+        widgets = {
+            'RS_End': forms.DateTimeInput(attrs={'class':'form-control', 'type':'datetime-local'}),
+            'RS_Start': forms.DateTimeInput(attrs={'class':'form-control', 'type':'datetime-local'})
+        }

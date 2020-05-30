@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
-from .models import Item, Category, Branch, Table
+from .models import Item, Category, Branch, Table, Reservation, Customer
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from restaurant.forms import RegistrationForm, EditProfileForm
+from restaurant.forms import RegistrationForm, EditProfileForm, AddReservationForm
 
 from restaurant.models import Item
 from django.shortcuts import render, redirect
@@ -79,6 +79,21 @@ class addItemView(CreateView):
         context = super(addItemView, self).get_context_data(**kwargs)
         context['title'] = 'Add Item'
         return context
+
+class addReservationView(CreateView):
+    model = Reservation
+    form_class=AddReservationForm
+    template_name = 'restaurant/templates/add_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(addReservationView, self).get_context_data(**kwargs)
+        context['title'] = 'Add Reservation'
+        return context
+    
+    def form_valid(self, form):
+        form.instance.RS_CU = Customer.objects.get(CU_User=self.request.user).CU_PK
+        return super().form_valid(form)
+    
 
 class updateItemView(UpdateView):
     model = Item

@@ -13,6 +13,7 @@ urlpatterns = [
     path('view_menu', views.view_menu, name='view_menu'),
     # This url is a temporary url used for the development of the selecting dishes
     path('select_dish', views.select_dish, name='view_menu'),
+    path('reservation/add', views.addReservationView.as_view(), name='addReservation'),
     path('item/<int:pk>', views.detailItemView.as_view(), name='detailItem'),
     path('item/add', views.addItemView.as_view(), name='addItem'),
     path('item/<int:pk>/update', views.updateItemView.as_view(), name='updateItem'),
