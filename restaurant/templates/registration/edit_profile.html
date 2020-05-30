@@ -2,11 +2,13 @@
         <title>Profile</title>
 {%endblock%}
 
+{% load crispy_forms_tags %}
+
 {% block body %}
     <div class="container">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type ='submit'>Submit</button>
     </form>
     <br>

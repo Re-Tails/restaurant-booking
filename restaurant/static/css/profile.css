@@ -1,0 +1,32 @@
+
+.profile p{
+  font-weight: 400;
+    font-size: 20px;
+  margin: 20px 0;
+	color: #925e6f;
+  margin-left: 14px;
+}
+.profile h1{
+  font-weight: 400;
+    font-size: 36px;
+  margin: 20px 0;
+	color: balck;
+  margin-left: 14px;
+}
+
+.profile h2{
+  font-weight: 400;
+    font-size: 30px;
+  margin: 20px 0;
+	color: balck;
+  margin-left: 14px;
+}
+
+.box {
+    width:80%;
+    height:200px;
+    background:#FFF;
+    margin:80px auto;
+}
+
+
