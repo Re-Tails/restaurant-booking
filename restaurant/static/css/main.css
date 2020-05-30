@@ -196,13 +196,9 @@ a{color:inherit;text-decoration:none}
 }
 
 .foot-lnk a {
-    color: white;
+    color: #efefef;
     font-size: large;
 }
 
-.group a {
-    color: white;
-    font-size: large;
-    position: right;
-}
+
 
