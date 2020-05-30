@@ -46,12 +46,14 @@ class AddOrderForm(ModelForm):
         )
 
 class AddOrderItemForm(ModelForm):
+    OI_IT = forms.ModelChoiceField(widget=forms.RadioSelect, queryset = Item.objects.all().filter(IT_CA_id = 1), initial='FIXED')
     class Meta:
         model = OrderItem
         fields = (
             'OI_IT',
         )
-    OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 1))
+    # OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 1))
+
 
 class AddOrderItemMainForm(ModelForm):
     class Meta:
