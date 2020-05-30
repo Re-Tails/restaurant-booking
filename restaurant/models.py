@@ -110,3 +110,4 @@ class OrderItem(models.Model):
     OI_PK = models.AutoField(primary_key=True)
     OI_BI = models.ForeignKey('BranchItem', on_delete=models.SET_NULL, null=True)
     OI_OR = models.ForeignKey('Order', on_delete=models.SET_NULL, null=True)
+    OI_IT = models.ForeignKey('Item', on_delete=models.SET_NULL, null=True)
