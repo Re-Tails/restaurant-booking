@@ -46,7 +46,7 @@ def addOrder(request):
             temp = form.save(commit=False)
             temp.OR_CU_id = request.user.pk
             temp = temp.save()
-            return redirect('index')
+            return redirect('addOrderItem', pk = form.instance.OR_PK)
     else:
         form = AddOrderForm()
     context = {
@@ -56,11 +56,13 @@ def addOrder(request):
 
 
 
-def addOrderItem(request):
+def addOrderItem(request, pk):
     if request.method == "POST":
         form = AddOrderItemForm(request.POST)
         if form.is_valid():
-            form.save();
+            temp = form.save(commit=False)
+            temp.OI_OR_id = pk
+            temp.save();
             return redirect('index')
     else:
         form = AddOrderItemForm()

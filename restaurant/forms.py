@@ -50,6 +50,5 @@ class AddOrderItemForm(ModelForm):
         model = OrderItem
         fields = (
             'OI_IT',
-            'OI_OR',
         )
     OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 1))
