@@ -1,11 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
-<title>test</title>
+{% extends 'add_form.html' %}
 
-<div class="login-wrap">
-  <form method="post">
-    {% csrf_token %}
-    <!-- {{ form.as_p }} -->
+{% load crispy_forms_tags %}
+
+{%block head%}
+        <title>Profile</title>
+{%endblock%}
+
+{% block body %}
+    <div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type ='submit'>Submit</button>
+    </form>
     <br>
     <h1 class="text-center">Edit Profile</h1>
     <hr>
@@ -25,7 +32,6 @@
     </div>
     <br>
     <button type='submit' class="btn btn-dark btn-md d-flex submit-btn">Submit</button>
-  </form>
   <br>
 </div>
 

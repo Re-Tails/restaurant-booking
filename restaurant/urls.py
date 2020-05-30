@@ -31,5 +31,5 @@ urlpatterns = [
     path('register/', views.registerView, name='register_url'),
     path('profile/', views.profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
-    path('change_password/', views.change_password, name='change_password'),
+    path('profile/password/', views.change_password, name='change_password'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

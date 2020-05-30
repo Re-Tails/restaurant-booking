@@ -1,11 +1,34 @@
-{% extends 'index.html' %}
+{% extends 'add_form.html' %}
+{% load static %}
 
 {%block content%}
-    <h1>Create New Account</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-    </form>
+    {% load crispy_forms_tags %}
+
+    <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab">Login</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<div class="sign-up-htm">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="group">
+					    <input type="submit" class="button" value="Register">
+				    </div>
+                </form>
+			</div>
+			<div class="sign-in-htm">
+                <div class="hr"></div>
+                <div class="group">
+                    <div class="button">
+                       <a style="color: white" href="{% url 'login_url' %}">Click here to Login</a>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
 
 {%endblock%}

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.urls import reverse
 
@@ -16,9 +15,12 @@ def create_customer_profile(sender, **kwargs):
         customer_profile = Customer.objects.create(CU_User=kwargs['instance'])
 post_save.connect(create_customer_profile, sender=User)
 
+
 def create_customer_profile(sender, **kwargs):
     if kwargs['created']:
         customer_profile = Customer.objects.create(CU_User=kwargs['instance'])
+        customer_profile.save()
+
 
 post_save.connect(create_customer_profile, sender=User)
 
@@ -33,11 +35,13 @@ def create_employee_profile(sender, **kwargs):
         employee_profile = Employee.objects.create(EM_User=kwargs['instance'])
 post_save.connect(create_employee_profile, sender=User)
 
-def create_employee_profile(sender, **kwargs):
-    if kwargs['created']:
-        employee_profile = Employee.objects.create(EM_User=kwargs['instance'])
+    def create_employee_profile(sender, **kwargs):
+        if kwargs['created']:
+            employee_profile = Customer.objects.create(CU_User=kwargs['instance'])
+            employee_profile.save()
 
-post_save.connect(create_employee_profile, sender=User)
+    post_save.connect(create_employee_profile, sender=User)
+
 
 class Branch(models.Model):
     BR_PK = models.AutoField(primary_key=True)
@@ -46,7 +50,8 @@ class Branch(models.Model):
 
     def __str__(self):
         return self.BR_Name
-    
+
+
 
 class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
@@ -54,6 +59,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.CA_Name
+
 
 class Item(models.Model):
     IT_PK = models.AutoField(primary_key=True)
@@ -66,15 +72,17 @@ class Item(models.Model):
     IT_Calories = models.BooleanField()
     IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items', verbose_name='Image')
-    
+
     def __str__(self):
         return self.IT_Name
+
 
 class BranchItem(models.Model):
     BI_PK = models.AutoField(primary_key=True)
     BI_IT = models.ForeignKey('Item', on_delete=models.CASCADE)
     BI_BR = models.ForeignKey('Branch', on_delete=models.CASCADE)
     BI_IsAvailable = models.BooleanField()
+
 
 class Table(models.Model):
     TA_PK = models.AutoField(primary_key=True)
@@ -85,6 +93,7 @@ class Table(models.Model):
     def __str__(self):
         return self.TA_Code
 
+
 class Reservation(models.Model):
     RS_PK = models.AutoField(primary_key=True)
     RS_CU = models.ForeignKey('Customer', on_delete=models.CASCADE)
@@ -92,6 +101,7 @@ class Reservation(models.Model):
     RS_People = models.IntegerField()
     RS_Start = models.DateTimeField()
     RS_End = models.DateTimeField()
+
 
 class Receipt(models.Model):
     RC_PK = models.AutoField(primary_key=True)
@@ -101,9 +111,11 @@ class Receipt(models.Model):
     RC_TotalProfit = models.DecimalField(max_digits=10, decimal_places=2)
 
 
+
 class Order(models.Model):
     OR_PK = models.AutoField(primary_key=True)
     OR_BR = models.ForeignKey('Branch', on_delete=models.CASCADE)
+
 
 class OrderItem(models.Model):
     OI_PK = models.AutoField(primary_key=True)
