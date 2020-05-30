@@ -35,12 +35,12 @@ def create_employee_profile(sender, **kwargs):
         employee_profile = Employee.objects.create(EM_User=kwargs['instance'])
 post_save.connect(create_employee_profile, sender=User)
 
-    def create_employee_profile(sender, **kwargs):
-        if kwargs['created']:
-            employee_profile = Customer.objects.create(CU_User=kwargs['instance'])
-            employee_profile.save()
+def create_employee_profile(sender, **kwargs):
+    if kwargs['created']:
+        employee_profile = Customer.objects.create(CU_User=kwargs['instance'])
+        employee_profile.save()
 
-    post_save.connect(create_employee_profile, sender=User)
+post_save.connect(create_employee_profile, sender=User)
 
 
 class Branch(models.Model):

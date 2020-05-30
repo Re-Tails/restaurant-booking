@@ -14,26 +14,6 @@
         <button type ='submit'>Submit</button>
     </form>
     <br>
-    <h1 class="text-center">Edit Profile</h1>
-    <hr>
-    <div class="row edit-form">
-      {% for field in form %}
-      {% if field.name != "password" %}
-      <div class="col-6 text-right">
-        <b>{{ field.label_tag }}</b>
-      </div>
-      <div class="col-6">
-        {{ field }}
-      </div>
-      {{ field.help_text }}
-      <br>
-      {% endif %}
-      {% endfor %}
     </div>
-    <br>
-    <button type='submit' class="btn btn-dark btn-md d-flex submit-btn">Submit</button>
-  <br>
-</div>
 
-{% include "footer.html" %}
-{% endblock %}
+{%endblock%}
