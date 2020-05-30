@@ -52,3 +52,19 @@ class AddOrderItemForm(ModelForm):
             'OI_IT',
         )
     OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 1))
+
+class AddOrderItemMainForm(ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = (
+            'OI_IT',
+        )
+    OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 2))
+
+class AddOrderItemDessertForm(ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = (
+            'OI_IT',
+        )
+    OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 3))
