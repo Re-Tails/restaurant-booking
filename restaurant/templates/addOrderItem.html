@@ -9,8 +9,8 @@
 </form> -->
 
 <body class="body-content">
-
-    <h1 class="text-center">Select Entrée</h1>
+<br>
+    <h1 class="text-center">Select {{category}}</h1>
     <hr class="w-50">
   <div class="container d-flex justify-content-center">
 <form method="POST">
@@ -19,15 +19,15 @@
   {% for field in form %}
     <span class="d-flex justify-content-center">{{field}}</span>
   {% endfor %}
-  <button type="submit" class="btn btn-dark btn-md d-flex submit-btn">Create</button>
+  <button type="submit" class="btn btn-dark btn-md d-flex submit-btn">Add</button>
 </form>
 </div>
 
-
+<br>
 <h1 class="text-center">Currently Available</h1>
 <hr class="w-50">
 <div class="row">
-  {% for item in entrees %}
+  {% for item in items %}
   <div class="col-lg-6 col-sm-12 list-dish">
     <div class="row">
       <div class="col-lg-6 col-sm-12">

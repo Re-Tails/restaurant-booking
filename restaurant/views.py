@@ -57,6 +57,7 @@ def addOrder(request):
 
 
 def addOrderItemEntree(request, pk):
+    category = "Entrée"
     entree = Item.objects.all().filter(IT_CA = 1)
     if request.method == "POST":
         form = AddOrderItemForm(request.POST)
@@ -69,12 +70,15 @@ def addOrderItemEntree(request, pk):
         form = AddOrderItemForm()
     context = {
         'form': form,
-        'entrees': entree
+        'items': entree,
+        'category': category
     }
     return render(request, 'addOrderItem.html', context)
 
 
 def addOrderItemMain(request, pk):
+    category = "Main"
+    main = Item.objects.all().filter(IT_CA = 2)
     if request.method == "POST":
         form = AddOrderItemMainForm(request.POST)
         if form.is_valid():
@@ -85,11 +89,15 @@ def addOrderItemMain(request, pk):
     else:
         form = AddOrderItemMainForm()
     context = {
-        'form': form
+        'form': form,
+        'items': main,
+        'category': category
     }
     return render(request, 'addOrderItem.html', context)
 
 def addOrderItemDessert(request, pk):
+    category = "Dessert"
+    dessert = Item.objects.all().filter(IT_CA = 3)
     if request.method == "POST":
         form = AddOrderItemDessertForm(request.POST)
         if form.is_valid():
@@ -100,7 +108,9 @@ def addOrderItemDessert(request, pk):
     else:
         form = AddOrderItemDessertForm()
     context = {
-        'form': form
+        'form': form,
+        'items': dessert,
+        'category': category
     }
     return render(request, 'addOrderItem.html', context)
 
