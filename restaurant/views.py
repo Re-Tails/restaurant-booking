@@ -4,7 +4,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from restaurant.forms import RegistrationForm, EditProfileForm, AddOrderForm
+from restaurant.forms import RegistrationForm, EditProfileForm, AddOrderForm, AddOrderItemForm
 
 from restaurant.models import Item
 from django.shortcuts import render, redirect
@@ -54,6 +54,20 @@ def addOrder(request):
     }
     return render(request, 'addOrder.html', context)
 
+
+
+def addOrderItem(request):
+    if request.method == "POST":
+        form = AddOrderItemForm(request.POST)
+        if form.is_valid():
+            form.save();
+            return redirect('index')
+    else:
+        form = AddOrderItemForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'addOrderItem.html', context)
 
 
 def edit_profile(request):

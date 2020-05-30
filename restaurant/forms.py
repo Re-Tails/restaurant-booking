@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import Order
+from .models import Order, OrderItem, Item
 from django.forms import ModelForm
 
 class RegistrationForm(UserCreationForm):
@@ -44,3 +44,12 @@ class AddOrderForm(ModelForm):
         fields = (
             'OR_BR',
         )
+
+class AddOrderItemForm(ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = (
+            'OI_IT',
+            'OI_OR',
+        )
+    OI_IT = forms.ModelChoiceField(queryset = Item.objects.all().filter(IT_CA_id = 1))
