@@ -69,12 +69,14 @@ class Item(models.Model):
     IT_Profit = models.DecimalField(max_digits=10, decimal_places=2)
     IT_Calories = models.IntegerField()
     IT_GluttenFree = models.BooleanField()
-    IT_Calories = models.BooleanField()
     IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items', verbose_name='Image')
 
     def __str__(self):
         return self.IT_Name
+    
+    def get_absolute_url(self):
+        return reverse('detailItem', args=[self.IT_PK])
 
 
 class BranchItem(models.Model):

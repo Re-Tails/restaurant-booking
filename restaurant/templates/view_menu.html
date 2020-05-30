@@ -36,7 +36,9 @@ Note this is caps sensitive -->
             <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
           </div>
           <div class="col-lg-6 col-sm-12">
-            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <a href="{% url 'detailItem' item.IT_PK %}">
+              <h5 class="text-left">{{item.IT_Name}}</h5>
+            </a>
             <p class="text-left w-50">
               <b>Price: </b>${{item.IT_Price}}<br>
               <b>Calories: </b>{{item.IT_Calories}}
