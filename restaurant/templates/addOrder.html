@@ -1,13 +1,29 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
-<p>test</p>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Create</button>
-</form>
+<!-- <div class="login-wrap align-items-center">
+  <form method="POST">
+    {% csrf_token %} -->
+<!-- {{ form.as_p }} -->
+<!-- {{ form|crispy }}
+    <button type="submit">Create</button>
+  </form>
+</div> -->
 
+<div class="login-wrap">
+  <div class="add-order">
+    <h1 class="text-center">Select Restaurant</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="w-75 submit-btn">{{field}}</div>
+      {% endfor %}
+      <br>
+      <button type="submit" class="btn btn-dark d-flex submit-btn">Create</button>
+    </form>
+  </div>
+</div>
 
 {% include "footer.html" %}
 {% endblock %}
