@@ -57,6 +57,7 @@ def addOrder(request):
 
 
 def addOrderItemEntree(request, pk):
+    entree = Item.objects.all().filter(IT_CA = 1)
     if request.method == "POST":
         form = AddOrderItemForm(request.POST)
         if form.is_valid():
@@ -67,9 +68,11 @@ def addOrderItemEntree(request, pk):
     else:
         form = AddOrderItemForm()
     context = {
-        'form': form
+        'form': form,
+        'entrees': entree
     }
     return render(request, 'addOrderItem.html', context)
+
 
 def addOrderItemMain(request, pk):
     if request.method == "POST":

@@ -226,3 +226,7 @@ a{color:inherit;text-decoration:none}
 .add-order{
   padding-top: 25%;
 }
+
+ul{
+  list-style: none;
+}

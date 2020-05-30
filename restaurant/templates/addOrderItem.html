@@ -1,13 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
 
-<p>item order</p>
+<!-- <p>item order</p>
 <form method="POST">
   {% csrf_token %}
   {{ form }}
   <button type="submit">Create</button>
-</form>
+</form> -->
 
+<body class="body-content">
+
+    <h1 class="text-center">Select Entrée</h1>
+    <hr class="w-50">
+  <div class="container d-flex justify-content-center">
+<form method="POST">
+  <br>
+  {% csrf_token %}
+  {% for field in form %}
+    <span class="d-flex justify-content-center">{{field}}</span>
+  {% endfor %}
+  <button type="submit" class="btn btn-dark btn-md d-flex submit-btn">Create</button>
+</form>
+</div>
+
+
+<h1 class="text-center">Currently Available</h1>
+<hr class="w-50">
+<div class="row">
+  {% for item in entrees %}
+  <div class="col-lg-6 col-sm-12 list-dish">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <h5 class="text-left">{{item.IT_Name}}</h5>
+        <p class="text-left w-50">
+          <b>Price: </b>${{item.IT_Price}}<br>
+          <b>Calories: </b>{{item.IT_Calories}}
+          <br>
+          <b>Vegetarian: </b>
+          {% if item.IT_Vegetarian %}
+          Yes
+          {% else %}
+          No
+          {% endif %}
+          <br>
+          <b>Glutten Free: </b>
+          {% if item.IT_GluttenFree %}
+          Yes
+          {% else %}
+          No
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+</body>
 
 {% include "footer.html" %}
 {% endblock %}
