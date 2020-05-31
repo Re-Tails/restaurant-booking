@@ -14,6 +14,8 @@ urlpatterns = [
     # This url is a temporary url used for the development of the selecting dishes
     path('select_dish', views.select_dish, name='view_menu'),
     path('reservation/add', views.addReservationView.as_view(), name='addReservation'),
+    path('reservation/<int:pk>/update', views.updateReservationView.as_view(), name='updateReservation'),
+    path('reservation/<int:pk>', views.detailReservationView.as_view(), name='detailReservation'),
     path('item/<int:pk>', views.detailItemView.as_view(), name='detailItem'),
     path('item/add', views.addItemView.as_view(), name='addItem'),
     path('item/<int:pk>/update', views.updateItemView.as_view(), name='updateItem'),

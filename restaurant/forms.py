@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.db import transaction
+from django.forms import DateTimeField
+from django.conf import settings
 
 from restaurant.models import Employee, Customer, Reservation
 
@@ -42,11 +44,17 @@ class EditProfileForm(UserChangeForm):
             'email',
         )
 
-class AddReservationForm(forms.ModelForm):
+class reservationForm(forms.ModelForm):
+    '''
+    RS_End = DateTimeField(
+        widget=forms.DateTimeInput(format=settings.DATETIME_INPUT_FORMATS, attrs={'class':'form-control', 'type':'datetime-local'})
+    )
+    RS_Start = DateTimeField(
+        widget=forms.DateTimeInput(format=settings.DATETIME_INPUT_FORMATS, attrs={'class':'form-control', 'type':'datetime-local'})
+    )
+    '''
     class Meta:
         model = Reservation
         fields = ['RS_TA', 'RS_People', 'RS_Start', 'RS_End']
         widgets = {
-            'RS_End': forms.DateTimeInput(attrs={'class':'form-control', 'type':'datetime-local'}),
-            'RS_Start': forms.DateTimeInput(attrs={'class':'form-control', 'type':'datetime-local'})
         }

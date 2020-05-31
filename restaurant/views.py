@@ -4,7 +4,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table, Reservation, Customer
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from restaurant.forms import RegistrationForm, EditProfileForm, AddReservationForm
+from restaurant.forms import RegistrationForm, EditProfileForm, reservationForm
 
 from restaurant.models import Item
 from django.shortcuts import render, redirect
@@ -82,7 +82,7 @@ class addItemView(CreateView):
 
 class addReservationView(CreateView):
     model = Reservation
-    form_class=AddReservationForm
+    form_class=reservationForm
     template_name = 'restaurant/templates/add_form.html'
 
     def get_context_data(self, **kwargs):
@@ -91,10 +91,27 @@ class addReservationView(CreateView):
         return context
     
     def form_valid(self, form):
-        form.instance.RS_CU = Customer.objects.get(CU_User=self.request.user).CU_PK
+        form.instance.RS_CU = Customer.objects.get(CU_User=self.request.user)
         return super().form_valid(form)
     
+class updateReservationView(UpdateView):
+    model = Reservation
+    form_class=reservationForm
+    template_name = 'restaurant/templates/add_form.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(updateReservationView, self).get_context_data(**kwargs)
+        context['title'] = 'Edit Reservation'
+        return context
+    
+class detailReservationView(DetailView):
+    model = Reservation
+    template_name = 'restaurant/templates/reservation_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(detailReservationView, self).get_context_data(**kwargs)
+        context['reservation'] = self.get_object()
+        return context
 class updateItemView(UpdateView):
     model = Item
     fields = ['IT_Name', 'IT_Price', 'IT_CA', 'IT_Calories', 'IT_GluttenFree', 'IT_Vegetarian', 'IT_Profit', 'IT_Image']
