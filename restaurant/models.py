@@ -105,7 +105,7 @@ class Reservation(models.Model):
     RS_End = models.DateTimeField()
 
     def get_absolute_url(self):
-        return reverse('detailReservation', args=[self.RS_PK])
+        return reverse('viewReservations')
 
 class Receipt(models.Model):
     RC_PK = models.AutoField(primary_key=True)

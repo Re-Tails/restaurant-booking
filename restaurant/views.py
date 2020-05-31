@@ -104,14 +104,13 @@ class updateReservationView(UpdateView):
         context['title'] = 'Edit Reservation'
         return context
     
-class detailReservationView(DetailView):
-    model = Reservation
-    template_name = 'restaurant/templates/reservation_details.html'
+def viewReservations(request):
+    reservations = Reservation.objects.filter(RS_CU = Customer.objects.get(CU_User=request.user))
+    context = {
+        'reservations': reservations, 
+    }
+    return render(request, 'reservations.html', context)
 
-    def get_context_data(self, **kwargs):
-        context = super(detailReservationView, self).get_context_data(**kwargs)
-        context['reservation'] = self.get_object()
-        return context
 class updateItemView(UpdateView):
     model = Item
     fields = ['IT_Name', 'IT_Price', 'IT_CA', 'IT_Calories', 'IT_GluttenFree', 'IT_Vegetarian', 'IT_Profit', 'IT_Image']
