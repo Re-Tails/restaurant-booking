@@ -1,5 +1,17 @@
 {% extends 'index.html' %}
 
 {%block content%}
-        <h1>Welcome, {{user.username}}</h1>
+<div class="container">
+  <h1>Welcome, {{user.username}}</h1>
+  {% if isStaff %}
+  <a href="/item/add" class="btn btn-dark">Add Menu Item</a>
+  {% else %}
+  <!-- Insert customer only uses here -->
+  {% endif %}
+  <a href="/profile/" class="btn btn-dark">View Details</a>
+  <a href="/profile/edit/" class="btn btn-dark">Edit Profile</a>
+  <a href="/profile/password/" class="btn btn-dark">Change Password</a>
+</div>
+{% include "footer.html" %}
+
 {%endblock%}

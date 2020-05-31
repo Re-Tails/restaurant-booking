@@ -1,29 +1,7 @@
+
+{% extends "base.html" %}
 {% load static %}
-
-<head>
-  <meta charset="utf-8">
-  <title>Placeholder</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
-
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">Placeholder</a>
-        <div class="btn btn-light ml-auto">
-            <a href="{% url 'login_url' %}">Login</a>
-        </div>
-    </nav>
-  </header>
-{%block head%}
-        <title>Profile</title>
-{%endblock%}
-
-{% block body %}
+{% block content %}
     <div class="container p-3 my-3 border">
         <h1>Welcome to your Profile!</h1>
         <h2>This is your current information</h2>
@@ -33,4 +11,4 @@
         <p> Email Address: {{ user.email }}</p>
         <a href="{% url 'edit_profile' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Click here to Edit Profile</a>
     </div>
-{%endblock%}
+{% endblock %}
