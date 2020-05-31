@@ -4,8 +4,13 @@
   <div class="container">
     <h1>Placeholder</h1>
     <div class="w-25">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</div>
-    <button type="button" name="button" class="btn btn-dark btn-md">Book</button>
+    {% if user.is_authenticated%}
+    <a href="reservation/add" class="btn btn-dark btn-md">Book</a>
+    {% endif %}
     <a href="/view_menu" class="text-dark btn btn-light btn-md">Menu</a>
+    {% if user.is_authenticated %}
+    <a href="/dashboard" class="btn btn-dark btn-md">Dashboard</a>
+    {% endif %}
   </div>
 </div>
 
