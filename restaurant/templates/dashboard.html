@@ -4,10 +4,17 @@
 <div class="container">
   <h1>Welcome, {{user.username}}</h1>
   {% if isStaff %}
+  <u>Staff Features</u><br>
   <a href="/item/add" class="btn btn-dark">Add Menu Item</a>
+  <a href="/branch/add" class="btn btn-dark">Add Branch</a>
+  <a href="/table/add" class="btn btn-dark">Add Table</a>
+
+
   {% else %}
-  <!-- Insert customer only uses here -->
+  <a href="/reservation/add" class="btn btn-dark">Make Reseveration</a>
   {% endif %}
+  <br><br>
+  <u>User Details</u><br>
   <a href="/profile/" class="btn btn-dark">View Details</a>
   <a href="/profile/edit/" class="btn btn-dark">Edit Profile</a>
   <a href="/profile/password/" class="btn btn-dark">Change Password</a>

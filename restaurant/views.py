@@ -21,7 +21,11 @@ def index(request):
 # Create your views here.
 
 def dashboardView(request):
-    return render(request, 'dashboard.html')
+    isStaff = request.user.is_staff
+    context = {
+        'isStaff': isStaff
+    }
+    return render(request, 'dashboard.html', context)
 
 def registerView(request):
     if request.method == 'POST':
@@ -89,11 +93,11 @@ class addReservationView(CreateView):
         context = super(addReservationView, self).get_context_data(**kwargs)
         context['title'] = 'Add Reservation'
         return context
-    
+
     def form_valid(self, form):
         form.instance.RS_CU = Customer.objects.get(CU_User=self.request.user)
         return super().form_valid(form)
-    
+
 class updateReservationView(UpdateView):
     model = Reservation
     form_class=reservationForm
@@ -103,7 +107,7 @@ class updateReservationView(UpdateView):
         context = super(updateReservationView, self).get_context_data(**kwargs)
         context['title'] = 'Edit Reservation'
         return context
-    
+
 class detailReservationView(DetailView):
     model = Reservation
     template_name = 'restaurant/templates/reservation_details.html'
@@ -148,7 +152,7 @@ class addCategoryView(CreateView):
         context = super(addCategoryView, self).get_context_data(**kwargs)
         context['title'] = 'Add Category'
         return context
-    
+
 class updateCategoryView(CreateView):
     model = Category
     fields = ['CA_Name']
