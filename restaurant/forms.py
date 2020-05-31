@@ -7,6 +7,8 @@ from django.conf import settings
 
 from restaurant.models import Employee, Customer, Reservation
 
+from restaurant.models import Employee, Customer
+
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=75, required=True)
