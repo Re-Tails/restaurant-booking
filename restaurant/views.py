@@ -124,7 +124,7 @@ def addOrderItemDessert(request, pk):
             temp = form.save(commit=False)
             temp.OI_OR_id = pk
             temp.save();
-            return redirect('index')
+            return redirect('dashboard')
     else:
         form = AddOrderItemDessertForm()
     context = {
@@ -134,6 +134,17 @@ def addOrderItemDessert(request, pk):
     }
     return render(request, 'addOrderItem.html', context)
 
+
+def myOrder(request):
+    orderList = Order.objects.all()
+    orderItemList = OrderItem.objects.all()
+    itemList = Item.objects.all()
+    context = {
+        'orderList': orderList,
+        'orderItemList': orderItemList,
+        'itemList': itemList
+    }
+    return render(request, 'myOrder.html', context)
 
 def edit_profile(request):
     if request.method == 'POST':

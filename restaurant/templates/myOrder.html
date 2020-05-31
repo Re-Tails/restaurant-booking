@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <br>
+  <h1 class="text-center">Your Order</h1>
+  <br>
+  {% for order in orderList %}
+    {% if order.OR_CU_id == 3 %}
+      <h3>Order Number: {{order.OR_PK}}</h3>
+      {% for orderItem in orderItemList %}
+        {%  if orderItem.OI_OR_id == order.OR_PK %}
+          {% for item in itemList %}
+            {% if orderItem.OI_IT_id == item.IT_PK %}
+              <!-- <p>- {{item.IT_Name}} | ${{item.IT_Price}}
+              </p> -->
+
+              <div class="row">
+                <div class="col-lg-6 col-sm-12 list-dish">
+                  <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                      <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                      <h5 class="text-left">{{item.IT_Name}}</h5>
+                      <p class="text-left w-50">
+                        <b>Price: </b>${{item.IT_Price}}<br>
+                        <!-- <b>Calories: </b>{{item.IT_Calories}} -->
+                        <!-- <br> -->
+                        <b>Vegetarian: </b>
+                        {% if item.IT_Vegetarian %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                        <br>
+                        <b>Glutten Free: </b>
+                        {% if item.IT_GluttenFree %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
