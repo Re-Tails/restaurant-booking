@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1>Le Place</h1>
+    <div class="w-25">Welcome to our restaurant. We provide quality service with meals cooked with fresh ingredients</div>
+    <button type="button" name="button" class="btn btn-dark btn-md">Book</button>
+    <a href="/view_menu" class="text-dark btn btn-light btn-md">Menu</a>
+    <a href="/view_booking" class="text-dark btn btn-light btn-md">View Booking</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="food-carousel carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://i.ndtvimg.com/i/2016-07/pasta_625x350_51467797057.jpg" alt="" class="d-block w-100">
+          </div>
+          <div class="carousel-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJ2k8_VLH84c578lUUQ-GODxE0w7cp3p4R2nq7-C0r1U_f-W1r&usqp=CAU" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <h2>We offer...</h2>
+      <p class="w-50">A quality and relaxing rural country pub, run by award winning owners, in the beautiful Berkshire village of Peasemore just a short drive from the A34 and junctions 13 and 14 of the M4. The building and decor are charming and rustic, with elegant modern touches.</p>
+    </div>
+  </div>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
