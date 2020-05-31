@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <article class="item-details content-section">
+        <h1 class="item-title">{{ item.IT_Name }}</h1>
+        <h3 class="item-price">${{ item.IT_Price }}</h3>
+        <img class="menu-img" src="{{ item.IT_Image.url }}">
+        <p>
+            <b>Glutten free:</b>
+            {% if item.IT_GluttenFree %} Yes
+                {% else %} No
+            {% endif %}
+            <br>
+            <b>Vegetarian:</b>
+            {% if item.IT_Vegetarian %} Yes
+                {% else %} No
+            {% endif %}
+        </p>
+        <p>Calories: {{ item.IT_Calories }}</p>
+
+        <a class="btn btn-dark ml-auto" href="{% url 'updateItem' item.IT_PK %}">Update</a>
+    </article>
+</div>
+{% include "footer.html" %}
+{% endblock content %}

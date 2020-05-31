@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
@@ -19,6 +19,15 @@ def index(request):
     #return HttpResponse("Hello, world. You're at the index page.")
     return render(request, 'index.html')
 # Create your views here.
+
+class detailItemView(DetailView):
+    model = Item
+    template_name = 'restaurant/templates/item_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(detailItemView, self).get_context_data(**kwargs)
+        context['item'] = self.get_object()
+        return context
 
 def dashboardView(request):
     isStaff = request.user.is_staff
