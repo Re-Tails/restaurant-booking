@@ -1,6 +1,7 @@
 .jumbotron{
   background-image: url("https://tul.imgix.net/content/article/Italian_Restaurants_Gold_Coast_20.jpg");
   background-position: center;
+  background-size: cover;
   height: 400px;
   color: #ececec;
 }
@@ -26,7 +27,6 @@
   object-fit: cover;
 }
 
-
  .footer{
   background-color:#343a40;
   padding: 20px;
@@ -48,7 +48,6 @@ body{
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
 a{color:inherit;text-decoration:none}
-
 
 .login-wrap{
 	width:100%;
@@ -200,5 +199,31 @@ a{color:inherit;text-decoration:none}
     font-size: large;
 }
 
+.menu-img{
+  object-fit: cover;
+  height: 100%;
+  max-width: 200px;
+  max-height: 200px;
+}
 
+.body-content{
+  margin-bottom: 100px;
+}
 
+.list-dish{
+  margin-bottom: 20px;
+}
+
+.select-dish-radio-btn{
+  position: absolute;
+  bottom: 0;
+}
+
+.submit-btn{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-form{
+  padding-top: 50px;
+}

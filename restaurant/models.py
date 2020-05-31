@@ -2,18 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
-from django.conf import settings
-
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
-
+from django.urls import reverse
 
 class Customer(models.Model):
     CU_PK = models.AutoField(primary_key=True)
-    CU_User = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    CU_Phone = models.CharField(max_length=15, verbose_name='Phone')
-    CU_Address = models.CharField(max_length=45, verbose_name='Address')
+    CU_User = models.OneToOneField(User, on_delete=models.CASCADE)
+    #username, first_name, last_name, email, password
+    CU_Phone = models.CharField(max_length=15)
+    CU_Address = models.CharField(max_length=45)
+def create_customer_profile(sender, **kwargs):
+    if kwargs['created']:
+        customer_profile = Customer.objects.create(CU_User=kwargs['instance'])
+post_save.connect(create_customer_profile, sender=User)
 
 
 def create_customer_profile(sender, **kwargs):
@@ -27,38 +27,56 @@ post_save.connect(create_customer_profile, sender=User)
 class Employee(models.Model):
     EM_PK = models.AutoField(primary_key=True)
     EM_User = models.OneToOneField(User, on_delete=models.CASCADE)
-    EM_BR = models.ForeignKey('Branch', on_delete=models.SET_NULL, null=True, verbose_name='Branch')
-    EM_EM_Manager = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, verbose_name='Manager')
+    #username, first_name, last_name, email, password
+    EM_BR = models.ForeignKey('Branch', on_delete=models.SET_NULL, null=True)
+    EM_EM_Manager = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True)
+def create_employee_profile(sender, **kwargs):
+    if kwargs['created']:
+        employee_profile = Employee.objects.create(EM_User=kwargs['instance'])
+post_save.connect(create_employee_profile, sender=User)
 
-    def create_employee_profile(sender, **kwargs):
-        if kwargs['created']:
-            employee_profile = Customer.objects.create(CU_User=kwargs['instance'])
-            employee_profile.save()
+def create_employee_profile(sender, **kwargs):
+    if kwargs['created']:
+        employee_profile = Customer.objects.create(CU_User=kwargs['instance'])
+        employee_profile.save()
 
-    post_save.connect(create_employee_profile, sender=User)
+post_save.connect(create_employee_profile, sender=User)
 
 
 class Branch(models.Model):
     BR_PK = models.AutoField(primary_key=True)
-    BR_Name = models.CharField(max_length=45, verbose_name='Name')
-    BR_Address = models.CharField(max_length=45, verbose_name='Address')
+    BR_Name = models.CharField(max_length=45)
+    BR_Address = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.BR_Name
+
 
 
 class Category(models.Model):
     CA_PK = models.AutoField(primary_key=True)
-    CA_Name = models.CharField(max_length=45, verbose_name='Name')
+    CA_Name = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.CA_Name
 
 
 class Item(models.Model):
     IT_PK = models.AutoField(primary_key=True)
-    IT_CA = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, verbose_name='Category')
-    IT_Name = models.CharField(max_length=45, verbose_name='Name')
-    IT_Price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Price')
-    IT_Profit = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Profit')
-    IT_Calories = models.IntegerField(verbose_name='Calories')
-    IT_GluttenFree = models.BooleanField(verbose_name='Glutten Free')
+    IT_CA = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+    IT_Name = models.CharField(max_length=45)
+    IT_Price = models.DecimalField(max_digits=10, decimal_places=2)
+    IT_Profit = models.DecimalField(max_digits=10, decimal_places=2)
+    IT_Calories = models.IntegerField()
+    IT_GluttenFree = models.BooleanField()
     IT_Vegetarian = models.BooleanField(verbose_name='Vegetarian')
     IT_Image = models.ImageField(default='default.png', upload_to='menu_items', verbose_name='Image')
+
+    def __str__(self):
+        return self.IT_Name
+    
+    def get_absolute_url(self):
+        return reverse('detailItem', args=[self.IT_PK])
 
 
 class BranchItem(models.Model):
@@ -70,26 +88,32 @@ class BranchItem(models.Model):
 
 class Table(models.Model):
     TA_PK = models.AutoField(primary_key=True)
-    TA_BR = models.ForeignKey('Branch', on_delete=models.CASCADE, verbose_name='Branch')
-    TA_Code = models.CharField(max_length=10, verbose_name='Code')
-    TA_Seats = models.IntegerField(verbose_name='Number of seats')
+    TA_BR = models.ForeignKey('Branch', on_delete=models.CASCADE)
+    TA_Code = models.CharField(max_length=10)
+    TA_Seats = models.IntegerField()
+
+    def __str__(self):
+        return self.TA_Code
 
 
 class Reservation(models.Model):
     RS_PK = models.AutoField(primary_key=True)
     RS_CU = models.ForeignKey('Customer', on_delete=models.CASCADE)
     RS_TA = models.ForeignKey('Table', on_delete=models.CASCADE)
-    RS_People = models.IntegerField(verbose_name='Number of people')
-    RS_Start = models.DateTimeField(verbose_name='Start time')
-    RS_End = models.DateTimeField(verbose_name='End time')
+    RS_People = models.IntegerField()
+    RS_Start = models.DateTimeField()
+    RS_End = models.DateTimeField()
 
+    def get_absolute_url(self):
+        return reverse('detailReservation', args=[self.RS_PK])
 
 class Receipt(models.Model):
     RC_PK = models.AutoField(primary_key=True)
     RC_OR = models.OneToOneField('Order', on_delete=models.SET_NULL, null=True)
     RC_CU = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
-    RC_TotalPrice = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Total price')
-    RC_TotalProfit = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Total profit')
+    RC_TotalPrice = models.DecimalField(max_digits=10, decimal_places=2)
+    RC_TotalProfit = models.DecimalField(max_digits=10, decimal_places=2)
+
 
 
 class Order(models.Model):

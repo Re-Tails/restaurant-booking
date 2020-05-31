@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body class="body-content">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1>Select Your Dishes</h1>
+      <div class="w-25">
+        Pick your dishes here
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="text-center">Entrée</h2>
+    <div class="row">
+      {% for item in entrees %}
+      <div class="col-lg-6 col-sm-12 list-dish">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="entree" name="entree" value={{item.IT_PK}}></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="text-center">Main</h2>
+    <div class="row">
+      {% for item in mains %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <!-- <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt=""> -->
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="main" name="main" value={{item.IT_PK}}></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h2 class="text-center">Dessert</h2>
+    <div class="row">
+      {% for item in desserts %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <!-- <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt=""> -->
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="dessert" name="dessert" value={{item.IT_PK}}></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+
+  <!-- Similar to the view menu branch. I will add in a loop that will list
+the items dynamically -->
+  <!-- <div class="container">
+    <h2 class="text-center"><u>Entrée</u></h2>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Entree 1</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="entree1" name="entree" value="entree1"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Entree 2</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="entree2" name="entree" value="entree2"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Entree 3</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="entree3" name="entree" value="entree3"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Entree 4</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="entree4" name="entree" value="entree4"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <h2 class="text-center"><u>Main</u></h2>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Main 1</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="main1" name="main" value="main1"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Main 2</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="main2" name="main" value="main2"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Main 3</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="main3" name="main" value="main3"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Main 4</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="main4" name="main" value="main4"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <h2 class="text-center"><u>Dessert</u></h2>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Dessert 1</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="Dessert1" name="Dessert" value="Dessert1"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Dessert 2</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="Dessert2" name="Dessert" value="Dessert2"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Dessert 3</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="Dessert3" name="Dessert" value="Dessert3"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row list-dish">
+          <div class="col-6">
+            <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">Dessert 4</h5>
+            <p class="text-left w-50">Here is where the information of the food will be stored</p>
+            <div class="select-dish-radio-btn">
+              <h5>Select <input type="radio" id="Dessert4" name="Dessert" value="Dessert4"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+</body>
+
+{% include "footer.html" %}
+{% endblock %}

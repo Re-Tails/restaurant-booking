@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body class="body-content">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1>What We Offer</h1>
+      <div class="w-25">
+        Here we offer a large range of authentic Italian cuisine to suit your tasting
+      </div>
+      <button class="btn btn-dark btn-md" onclick="displayAll()">All</button>
+      <button class="btn btn-dark btn-md" onclick="displayEntree()">Entrées</button>
+      <button class="btn btn-dark btn-md" onclick="displayMain()">Mains</button>
+      <button class="btn btn-dark btn-md" onclick="displayDessert()">Dessert</button>
+    </div>
+  </div>
+
+  <!-- This is the loop to use to call from database and display info
+Note this is caps sensitive -->
+  <!-- {% for item in items %}
+
+<p>test {{item.IT_Name}}</p>
+
+{% endfor %} -->
+
+
+
+  <div class="container">
+    <div id="entreeDIV">
+    <h2 class="text-center">Entrée</h2>
+    <div class="row">
+      {% for item in entrees %}
+      <div class="col-lg-6 col-sm-12 list-dish">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <a href="{% url 'detailItem' item.IT_PK %}">
+              <h5 class="text-left">{{item.IT_Name}}</h5>
+            </a>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+
+<div id="mainDIV">
+    <h2 class="text-center">Main</h2>
+    <div class="row">
+      {% for item in mains %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <!-- <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt=""> -->
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+
+<div id="dessertDIV">
+    <h2 class="text-center">Dessert</h2>
+    <div class="row">
+      {% for item in desserts %}
+      <div class="col-6 list-dish">
+        <div class="row">
+          <div class="col-6">
+            <!-- <img class="menu-img rounded float-right" src="https://www.delallo.com/wp-content/uploads/2016/08/Layered-Eggplant-Parmigiana-Lasagna-600x606.png" alt=""> -->
+            <img class="menu-img rounded float-right" src="{{item.IT_Image.url}}" alt="">
+          </div>
+          <div class="col-6">
+            <h5 class="text-left">{{item.IT_Name}}</h5>
+            <p class="text-left w-50">
+              <b>Price: </b>${{item.IT_Price}}<br>
+              <b>Calories: </b>{{item.IT_Calories}}
+              <br>
+              <b>Vegetarian: </b>
+              {% if item.IT_Vegetarian %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+              <br>
+              <b>Glutten Free: </b>
+              {% if item.IT_GluttenFree %}
+              Yes
+              {% else %}
+              No
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+</body>
+
+{% include "footer.html" %}
+{% endblock %}
