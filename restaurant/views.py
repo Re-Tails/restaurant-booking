@@ -69,7 +69,12 @@ def addOrder(request):
     }
     return render(request, 'addOrder.html', context)
 
-
+def deleteOrder(request, pk):
+    object = Order.objects.all().filter(OR_PK = pk)
+    for orderitem in OrderItem.objects.all().filter(OI_OR_id = pk):
+        orderitem.delete()
+    object.delete()
+    return redirect('index')
 
 def addOrderItemEntree(request, pk):
     category = "Entrée"

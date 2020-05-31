@@ -37,4 +37,5 @@ urlpatterns = [
     path('<int:pk>/addOrderItemDessert', views.addOrderItemDessert, name='addOrderItemDessert'),
     path('change_password/', views.change_password, name='change_password'),
     path('viewOrder', views.viewOrder, name='viewOrder'),
+    path('order/<int:pk>/delete', views.deleteOrder, name='deleteOrder'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
