@@ -6,7 +6,7 @@ from .models import Item, Category, Branch, Table
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from restaurant.forms import RegistrationForm, EditProfileForm, AddOrderForm, AddOrderItemForm, AddOrderItemMainForm, AddOrderItemDessertForm
 
-from restaurant.models import Item
+from restaurant.models import Item, OrderItem, Order
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -21,7 +21,11 @@ def index(request):
 # Create your views here.
 
 def dashboardView(request):
-    return render(request, 'dashboard.html')
+    isStaff = request.user.is_staff
+    context = {
+        'isStaff': isStaff
+    }
+    return render(request, 'dashboard.html', context)
 
 def registerView(request):
     if request.method == 'POST':
@@ -37,6 +41,17 @@ def registerView(request):
 def profile(request):
     args = {'user': request.user}
     return render(request, 'registration/profile.html', args)
+
+def viewOrder(request):
+    orderList = Order.objects.all()
+    orderItemList = OrderItem.objects.all()
+    itemList = Item.objects.all()
+    context = {
+        'orderList': orderList,
+        'orderItemList': orderItemList,
+        'itemList': itemList
+    }
+    return render(request, 'viewOrder.html', context)
 
 
 def addOrder(request):

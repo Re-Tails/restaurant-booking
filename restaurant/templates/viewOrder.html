@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <h1>Today's Order</h1>
+  {% for order in orderList %}
+    <u>Order Number: {{order.OR_PK}}</u>
+      {% for orderItem in orderItemList %}
+        {%  if orderItem.OI_OR_id == order.OR_PK %}
+    <!-- <p>{{orderItem.OI_IT_id}}</p> -->
+          {% for item in itemList %}
+            {% if orderItem.OI_IT_id == item.IT_PK %}
+              <p>{{item.IT_Name}}</p>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    <br>
+  {% endfor %}
+
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
