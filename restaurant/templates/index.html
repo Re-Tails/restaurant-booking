@@ -2,10 +2,15 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1>Placeholder</h1>
-    <div class="w-25">Welcome to our restaurant. We provide quality service with meals cooked with fresh ingredients.</div>
-    <a href="/reservation/add" class="btn btn-dark btn-md">Book</button>
+    <h1>Sapori Unici</h1>
+    <div class="w-25">We provide quality service with meals cooked with fresh ingredients</div>
+    {% if user.is_authenticated%}
+    <a href="reservation/add" class="btn btn-dark btn-md">Book</a>
+    {% endif %}
     <a href="/view_menu" class="text-dark btn btn-light btn-md">Menu</a>
+    {% if user.is_authenticated %}
+    <a href="/dashboard" class="btn btn-dark btn-md">Dashboard</a>
+    {% endif %}
   </div>
 </div>
 
@@ -24,7 +29,7 @@
       </div>
     </div>
     <div class="col-sm">
-      <h2>Header</h2>
+      <h2>Welcome to our restaurant</h2>
       <p class="w-50">A quality and relaxing rural country pub, run by award winning owners, in the beautiful Berkshire village of Peasemore just a short drive from the A34 and junctions 13 and 14 of the M4.</p>
     </div>
   </div>
