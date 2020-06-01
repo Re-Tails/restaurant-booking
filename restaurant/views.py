@@ -107,15 +107,25 @@ class updateReservationView(UpdateView):
         context = super(updateReservationView, self).get_context_data(**kwargs)
         context['title'] = 'Edit Reservation'
         return context
+    
+def viewReservations(request):
+    reservations = Reservation.objects.filter(RS_CU = Customer.objects.get(CU_User=request.user))
+    context = {
+        'reservations': reservations, 
+    }
+    return render(request, 'reservations.html', context)
 
-class detailReservationView(DetailView):
+class deleteReservationView(DeleteView):
     model = Reservation
-    template_name = 'restaurant/templates/reservation_details.html'
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('viewReservations')
 
     def get_context_data(self, **kwargs):
-        context = super(detailReservationView, self).get_context_data(**kwargs)
-        context['reservation'] = self.get_object()
+        context = super(deleteReservationView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Reservation'
+        context['name'] = self.get_object().RS_Start
         return context
+
 class updateItemView(UpdateView):
     model = Item
     fields = ['IT_Name', 'IT_Price', 'IT_CA', 'IT_Calories', 'IT_GluttenFree', 'IT_Vegetarian', 'IT_Profit', 'IT_Image']
