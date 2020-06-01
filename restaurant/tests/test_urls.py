@@ -59,5 +59,3 @@ class TestUrls(SimpleTestCase):
 		url = reverse('change_password')
 		self.assertEquals('/change_password/', url);
 		self.assertEquals(resolve(url).func, change_password)
-
-	
