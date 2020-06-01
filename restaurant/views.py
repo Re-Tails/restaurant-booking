@@ -111,6 +111,17 @@ def viewReservations(request):
     }
     return render(request, 'reservations.html', context)
 
+class deleteReservationView(DeleteView):
+    model = Reservation
+    template_name = 'restaurant/templates/delete_form.html'
+    success_url = reverse_lazy('viewReservations')
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteReservationView, self).get_context_data(**kwargs)
+        context['title'] = 'Delete Reservation'
+        context['name'] = self.get_object().RS_Start
+        return context
+
 class updateItemView(UpdateView):
     model = Item
     fields = ['IT_Name', 'IT_Price', 'IT_CA', 'IT_Calories', 'IT_GluttenFree', 'IT_Vegetarian', 'IT_Profit', 'IT_Image']

@@ -16,8 +16,9 @@
                 <tr>
                   <th scope="row">{{ res.RS_PK }}</th>
                   <td>{{ res.RS_TA.TA_Code }}</td>
-                  <td>@{{ res.RS_Start }}</td>
-                  <td>@{{ res.RS_End }}</td>
+                  <td>{{ res.RS_Start }}</td>
+                  <td>{{ res.RS_End }}</td>
+                  <td><a class="btn btn-dark ml-auto" href="{% url 'deleteReservation' res.RS_PK %}">Cancel</td>
                 </tr>
               {% endfor %}
             </tbody>
